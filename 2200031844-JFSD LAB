@@ -1,0 +1,115 @@
+package com.klef.jfsd.exam;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import java.util.Arrays;
+import java.util.List;
+
+
+class Employee {
+    private Integer employeeId;
+    private String name;
+    private Double salary;
+    private String department;
+    private List<String> skills;
+
+    public Employee(Integer employeeId, String name, Double salary, String department, List<String> skills) {
+        this.employeeId = employeeId;
+        this.name = name;
+        this.salary = salary;
+        this.department = department;
+        this.skills = skills;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId=" + employeeId +
+                ", name='" + name + '\'' +
+                ", salary=" + salary +
+                ", department='" + department + '\'' +
+                ", skills=" + skills +
+                '}';
+    }
+}
+
+class Instructor {
+    private Integer instructorId;
+    private String name;
+    private String email;
+    private String phoneNumber;
+
+    public void setInstructorId(Integer instructorId) {
+        this.instructorId = instructorId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Instructor{" +
+                "instructorId=" + instructorId +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
+}
+
+
+class Course {
+    private Integer courseId;
+    private String courseName;
+    private Integer credits;
+    private Instructor instructor;
+
+   
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public void setCredits(Integer credits) {
+        this.credits = credits;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId=" + courseId +
+                ", courseName='" + courseName + '\'' +
+                ", credits=" + credits +
+                ", instructor=" + instructor +
+                '}';
+    }
+}
+
+public class ClientDemo {
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+
+  
+        Employee employee = (Employee) context.getBean("employee");
+        System.out.println(employee);
+
+        Course course = (Course) context.getBean("course");
+        System.out.println(course);
+    }
+}
